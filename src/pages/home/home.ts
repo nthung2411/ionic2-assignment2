@@ -20,16 +20,22 @@ export class HomePage {
     this.presses++;
   }
 
-  onResetTaps(){
-    this.taps = 0;
+  onDidReset(resetType: string){
+    console.log(resetType);
+    switch(resetType){
+      case 'tap':
+        this.taps = 0;
+        break;
+      case 'press':
+        this.presses=0;
+        break;
+      default:
+        this.taps = 0;
+        this.presses =0;
+    }
   }
 
-  onResetPresses(){
-    this.presses=0;
-  }
-  
-  onResetAll(){
-    this.onResetPresses();
-    this.onResetTaps();
+  didWin(){
+    return this.taps === 2 && this.presses === 4;
   }
 }
